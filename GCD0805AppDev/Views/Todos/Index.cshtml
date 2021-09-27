@@ -1,4 +1,4 @@
-﻿
+﻿@model GCD0805AppDev.Models.Todo
 @{
     ViewBag.Title = "Index";
 }
@@ -6,4 +6,27 @@
 <h2>Index</h2>
 
 <h3>This is Index to TodosController</h3>
+
+@*<ul>
+  <li>Id: @Model.Id</li>
+  <li>Description: @Model.Description</li>
+  <li>Due Date: @Model.DueDate.ToString("d")</li>
+</ul>*@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Description</th>
+      <th scope="col">Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">@Model.Id</th>
+      <td>@Model.Description</td>
+      <td>@Model.DueDate.ToString("d")</td>
+    </tr>
+  </tbody>
+</table>
 

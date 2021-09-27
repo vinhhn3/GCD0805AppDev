@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using GCD0805AppDev.Models;
+using System;
 using System.Web.Mvc;
 
 namespace GCD0805AppDev.Controllers
 {
-    public class TodosController : Controller
+  public class TodosController : Controller
+  {
+    // GET: Todos
+    public ActionResult Index()
     {
-        // GET: Todos
-        public ActionResult Index()
-        {
-            return View();
-        }
+      Todo todo = new Todo()
+      {
+        Id = 1,
+        Description = "Kill Bill",
+        DueDate = new DateTime(2008, 12, 20)
+      };
+      return View(todo);
     }
+  }
 }
