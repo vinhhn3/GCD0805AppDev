@@ -3,34 +3,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>My Todoes</h2>
 
-<h3>This is Index to TodosController</h3>
+<div class="form-group">
+  <a href="#" class="btn btn-primary">Create a new Todo</a>
+</div>
 
-@*<ul>
-  <li>Id: @Model.Id</li>
-  <li>Description: @Model.Description</li>
-  <li>Due Date: @Model.DueDate.ToString("d")</li>
-</ul>*@
+<div class="form-group">
+    <input type="text" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Description</th>
-      <th scope="col">Due Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach (var item in @Model)
-    {
+
+  @*<ul>
+      <li>Id: @Model.Id</li>
+      <li>Description: @Model.Description</li>
+      <li>Due Date: @Model.DueDate.ToString("d")</li>
+    </ul>*@
+
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <th scope="row">@item.Id</th>
-        <td>@item.Description</td>
-        <td>@item.DueDate.ToString("d")</td>
+        <th scope="col">#</th>
+        <th scope="col">Description</th>
+        <th scope="col">Due Date</th>
+        <th scope="col">Action</th>
       </tr>
-    }
+    </thead>
+    <tbody>
+      @foreach (var item in @Model)
+      {
+        <tr>
+          <th scope="row">@item.Id</th>
+          <td>@item.Description</td>
+          <td>@item.DueDate.ToString("d")</td>
+          <td>
+            <a href="#" class="btn btn-danger">Delete</a>
+            <a href="#" class="btn btn-success">Edit</a>
+            <a href="#" class="btn btn-info">Details</a>
+          </td>
+        </tr>
+      }
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
