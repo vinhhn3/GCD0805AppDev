@@ -7,12 +7,17 @@
 
 <div class="form-group">
   <a href="#" class="btn btn-primary">Create a new Todo</a>
+  @Html.ActionLink("Create a new Todo", "Create","Todos")
 </div>
 
-<div class="form-group">
-    <input type="text" />
-    <button type="submit" class="btn btn-primary">Search</button>
-</div>
+
+
+<form>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search todo by name"/>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
 
 
   @*<ul>
