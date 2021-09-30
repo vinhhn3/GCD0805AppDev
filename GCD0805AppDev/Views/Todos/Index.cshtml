@@ -9,15 +9,12 @@
   @Html.ActionLink("Create a new Todo", "Create","Todos", new { @class = "btn btn-primary" })
 </div>
 
-
-
 <form>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search todo by name"/>
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
-
 
   @*<ul>
       <li>Id: @Model.Id</li>
@@ -42,9 +39,10 @@
           <td>@item.Description</td>
           <td>@item.DueDate.ToString("d")</td>
           <td>
-            @Html.ActionLink("Delete", "Delete", "Todos", new { id = item.Id} ,new {@class="btn btn-danger"})
+            @Html.ActionLink("Delete", "Delete", "Todos", new { id = item.Id }, new { @class = "btn btn-danger" })
             <a href="#" class="btn btn-success">Edit</a>
-            <a href="#" class="btn btn-info">Details</a>
+            @Html.ActionLink("Details", "Details", "Todos", new { id = item.Id }, new { @class = "btn btn-info" })
+
           </td>
         </tr>
       }
