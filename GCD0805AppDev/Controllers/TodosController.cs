@@ -15,7 +15,6 @@ namespace GCD0805AppDev.Controllers
         new Todo(){Id = 1, Description = "Kill Bill", DueDate = new DateTime(2008, 12, 20)},
         new Todo(){Id = 2, Description = "Kill Bill 2", DueDate = new DateTime(2012, 01, 22)},
         new Todo(){Id = 3, Description = "John Wick", DueDate = new DateTime(2020, 01, 22)}
-
       };
       return View(todos);
     }
