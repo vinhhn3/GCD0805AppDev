@@ -42,7 +42,7 @@
           <td>@item.Description</td>
           <td>@item.DueDate.ToString("d")</td>
           <td>
-            <a href="#" class="btn btn-danger">Delete</a>
+            @Html.ActionLink("Delete", "Delete", "Todos", new { id = item.Id} ,new {@class="btn btn-danger"})
             <a href="#" class="btn btn-success">Edit</a>
             <a href="#" class="btn btn-info">Details</a>
           </td>
