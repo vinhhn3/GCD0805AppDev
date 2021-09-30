@@ -6,13 +6,20 @@
 <h2>Create a new Todo</h2>
 @using (Html.BeginForm("Create", "Todos", FormMethod.Post))
 {
+  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
   <div class="form-group">
     <label>Description</label>
-    @Html.TextBoxFor(m => m.Description,"", new { @class = "form-control" })
+    @Html.TextBoxFor(m => m.Description, "", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Description, "",
+      new { @class = "text-danger" }
+      )
   </div>
   <div class="form-group">
     <label>Due Date</label>
-    @Html.TextBoxFor(m => m.DueDate, "", new { @class = "form-control", type="date" })
+    @Html.TextBoxFor(m => m.DueDate, "", new { @class = "form-control", type = "date" })
+    @Html.ValidationMessageFor(m => m.DueDate, "",
+      new { @class = "text-danger" }
+    )
   </div>
   <button type="submit" class="btn btn-primary">Create</button>
 }
