@@ -40,9 +40,8 @@
           <td>@item.DueDate.ToString("d")</td>
           <td>
             @Html.ActionLink("Delete", "Delete", "Todos", new { id = item.Id }, new { @class = "btn btn-danger" })
-            <a href="#" class="btn btn-success">Edit</a>
+            @Html.ActionLink("Edit", "Edit", "Todos", new { id = item.Id }, new { @class = "btn btn-success" })
             @Html.ActionLink("Details", "Details", "Todos", new { id = item.Id }, new { @class = "btn btn-info" })
-
           </td>
         </tr>
       }
