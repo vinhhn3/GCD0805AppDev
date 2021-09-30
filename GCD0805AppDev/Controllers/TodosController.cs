@@ -76,5 +76,22 @@ namespace GCD0805AppDev.Controllers
 
       return View(todoInDb);
     }
+
+    [HttpPost]
+    public ActionResult Edit(Todo todo)
+    {
+      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == todo.Id);
+      if (todoInDb == null)
+      {
+        return HttpNotFound();
+      }
+
+      todoInDb.Description = todo.Description;
+      todoInDb.DueDate = todo.DueDate;
+
+      _context.SaveChanges();
+
+      return RedirectToAction("Index", "Todos");
+    }
   }
 }
