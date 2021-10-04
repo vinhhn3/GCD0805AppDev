@@ -1,4 +1,5 @@
 ﻿using GCD0805AppDev.Models;
+using GCD0805AppDev.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,12 +15,13 @@ namespace GCD0805AppDev.Controllers
   {
     private ApplicationSignInManager _signInManager;
     private ApplicationUserManager _userManager;
-
     public AccountController()
     {
     }
 
-    public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+    public AccountController(
+      ApplicationUserManager userManager,
+      ApplicationSignInManager signInManager)
     {
       UserManager = userManager;
       SignInManager = signInManager;
@@ -152,6 +154,7 @@ namespace GCD0805AppDev.Controllers
         var result = await UserManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
+          await UserManager.AddToRoleAsync(user.Id, Role.User);
           await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
           // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
