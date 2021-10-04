@@ -31,20 +31,28 @@ namespace GCD0805AppDev.Controllers
         Categories = categories
       };
       return View(viewModel);
+
+
     }
 
     [HttpPost]
-    public ActionResult Create(Todo todo)
+    public ActionResult Create(TodoCategoriesViewModel model)
     {
       if (!ModelState.IsValid)
       {
-        return View(todo);
+        var viewModel = new TodoCategoriesViewModel
+        {
+          Todo = model.Todo,
+          Categories = _context.Categories.ToList()
+        };
+        return View(viewModel);
       }
 
       var newTodo = new Todo()
       {
-        Description = todo.Description,
-        DueDate = todo.DueDate
+        Description = model.Todo.Description,
+        DueDate = model.Todo.DueDate,
+        CategoryId = model.Todo.CategoryId
       };
 
       _context.Todos.Add(newTodo);
