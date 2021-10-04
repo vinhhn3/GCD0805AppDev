@@ -1,4 +1,4 @@
-﻿@model GCD0805AppDev.Models.Todo
+﻿@model GCD0805AppDev.ViewModels.TodoCategoriesViewModel
 @{
   ViewBag.Title = "Create";
 }
@@ -9,16 +9,23 @@
   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
   <div class="form-group">
     <label>Description</label>
-    @Html.TextBoxFor(m => m.Description, "", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Description, "",
+    @Html.TextBoxFor(m => m.Todo.Description, "", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Todo.Description, "",
       new { @class = "text-danger" }
       )
   </div>
   <div class="form-group">
     <label>Due Date</label>
-    @Html.TextBoxFor(m => m.DueDate, "", new { @class = "form-control", type = "date" })
-    @Html.ValidationMessageFor(m => m.DueDate, "",
+    @Html.TextBoxFor(m => m.Todo.DueDate, "", new { @class = "form-control", type = "date" })
+    @Html.ValidationMessageFor(m => m.Todo.DueDate, "",
       new { @class = "text-danger" }
+    )
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    @Html.DropDownListFor(m => m.Todo.CategoryId, 
+      new SelectList(Model.Categories,"Id","Description"), 
+      new {@class="form-control"}
     )
   </div>
   <button type="submit" class="btn btn-primary">Create</button>

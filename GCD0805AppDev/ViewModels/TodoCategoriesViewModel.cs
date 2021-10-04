@@ -6,6 +6,6 @@ namespace GCD0805AppDev.ViewModels
   public class TodoCategoriesViewModel
   {
     public Todo Todo { get; set; }
-    public IEnumerator<Category> Categories { get; set; }
+    public List<Category> Categories { get; set; }
   }
 }

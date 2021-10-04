@@ -1,4 +1,5 @@
 ﻿using GCD0805AppDev.Models;
+using GCD0805AppDev.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -24,7 +25,12 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Create()
     {
-      return View();
+      var categories = _context.Categories.ToList();
+      var viewModel = new TodoCategoriesViewModel()
+      {
+        Categories = categories
+      };
+      return View(viewModel);
     }
 
     [HttpPost]
