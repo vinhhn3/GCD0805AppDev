@@ -1,5 +1,6 @@
 ﻿using GCD0805AppDev.Models;
 using GCD0805AppDev.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -16,8 +17,10 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Index()
     {
+      var userId = User.Identity.GetUserId();
       var todos = _context.Todos
         .Include(t => t.Category)
+        .Where(t => t.UserId == userId)
         .ToList();
 
       return View(todos);
@@ -31,8 +34,6 @@ namespace GCD0805AppDev.Controllers
         Categories = categories
       };
       return View(viewModel);
-
-
     }
 
     [HttpPost]
@@ -48,11 +49,14 @@ namespace GCD0805AppDev.Controllers
         return View(viewModel);
       }
 
+      var userId = User.Identity.GetUserId();
+
       var newTodo = new Todo()
       {
         Description = model.Todo.Description,
         DueDate = model.Todo.DueDate,
-        CategoryId = model.Todo.CategoryId
+        CategoryId = model.Todo.CategoryId,
+        UserId = userId
       };
 
       _context.Todos.Add(newTodo);
@@ -64,7 +68,10 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Delete(int id)
     {
-      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == id);
+      var userId = User.Identity.GetUserId();
+
+      var todoInDb = _context.Todos
+        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
       if (todoInDb == null)
       {
         return HttpNotFound();
@@ -79,9 +86,11 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Details(int id)
     {
+      var userId = User.Identity.GetUserId();
+
       var todoInDb = _context.Todos
         .Include(t => t.Category)
-        .SingleOrDefault(t => t.Id == id);
+        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
 
       if (todoInDb == null)
       {
@@ -94,7 +103,11 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Edit(int id)
     {
-      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == id);
+      var userId = User.Identity.GetUserId();
+
+
+      var todoInDb = _context.Todos
+        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
       if (todoInDb == null)
       {
         return HttpNotFound();
@@ -120,8 +133,12 @@ namespace GCD0805AppDev.Controllers
           Categories = _context.Categories.ToList()
         };
         return View(viewModel);
+
       }
-      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == model.Todo.Id);
+      var userId = User.Identity.GetUserId();
+
+      var todoInDb = _context.Todos
+        .SingleOrDefault(t => t.Id == model.Todo.Id && t.UserId == userId);
       if (todoInDb == null)
       {
         return HttpNotFound();
