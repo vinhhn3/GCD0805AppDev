@@ -187,6 +187,10 @@
     <Compile Include="Migrations\202110040043573_AddCategoriesTable.Designer.cs">
       <DependentUpon>202110040043573_AddCategoriesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110040048079_AddFKToTodoesTable.cs" />
+    <Compile Include="Migrations\202110040048079_AddFKToTodoesTable.Designer.cs">
+      <DependentUpon>202110040048079_AddFKToTodoesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -284,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110040043573_AddCategoriesTable.resx">
       <DependentUpon>202110040043573_AddCategoriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110040048079_AddFKToTodoesTable.resx">
+      <DependentUpon>202110040048079_AddFKToTodoesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

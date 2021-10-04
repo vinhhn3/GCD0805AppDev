@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GCD0805AppDev.Models
 {
@@ -12,5 +13,8 @@ namespace GCD0805AppDev.Models
     public string Description { get; set; }
     [Required]
     public DateTime DueDate { get; set; }
+    [ForeignKey("Category")]
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
   }
 }
