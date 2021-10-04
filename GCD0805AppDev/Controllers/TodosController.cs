@@ -1,4 +1,5 @@
 ﻿using GCD0805AppDev.Models;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,7 +15,10 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Index()
     {
-      var todos = _context.Todos.ToList();
+      var todos = _context.Todos
+        .Include(t => t.Category)
+        .ToList();
+
       return View(todos);
     }
     [HttpGet]
