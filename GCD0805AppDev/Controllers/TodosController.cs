@@ -100,7 +100,13 @@ namespace GCD0805AppDev.Controllers
         return HttpNotFound();
       }
 
-      return View(todoInDb);
+      var viewModel = new TodoCategoriesViewModel
+      {
+        Todo = todoInDb,
+        Categories = _context.Categories.ToList()
+      };
+
+      return View(viewModel);
     }
 
     [HttpPost]
