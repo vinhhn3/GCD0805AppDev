@@ -110,21 +110,26 @@ namespace GCD0805AppDev.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Todo todo)
+    public ActionResult Edit(TodoCategoriesViewModel model)
     {
       if (!ModelState.IsValid)
       {
-        return View(todo);
+        var viewModel = new TodoCategoriesViewModel
+        {
+          Todo = model.Todo,
+          Categories = _context.Categories.ToList()
+        };
+        return View(viewModel);
       }
-      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == todo.Id);
+      var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == model.Todo.Id);
       if (todoInDb == null)
       {
         return HttpNotFound();
       }
 
-      todoInDb.Description = todo.Description;
-      todoInDb.DueDate = todo.DueDate;
-
+      todoInDb.Description = model.Todo.Description;
+      todoInDb.DueDate = model.Todo.DueDate;
+      todoInDb.CategoryId = model.Todo.CategoryId;
       _context.SaveChanges();
 
       return RedirectToAction("Index", "Todos");
