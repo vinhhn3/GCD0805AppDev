@@ -183,6 +183,10 @@
     <Compile Include="Migrations\202109300909275_ModifyTodoModel.Designer.cs">
       <DependentUpon>202109300909275_ModifyTodoModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110040043573_AddCategoriesTable.cs" />
+    <Compile Include="Migrations\202110040043573_AddCategoriesTable.Designer.cs">
+      <DependentUpon>202110040043573_AddCategoriesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -277,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109300909275_ModifyTodoModel.resx">
       <DependentUpon>202109300909275_ModifyTodoModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110040043573_AddCategoriesTable.resx">
+      <DependentUpon>202110040043573_AddCategoriesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
