@@ -13,7 +13,7 @@ namespace GCD0805AppDev.Models
     public DbSet<Todo> Todos { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Team> Teams { get; set; }
-
+    public DbSet<UserTeam> UsersTeams { get; set; }
     public static ApplicationDbContext Create()
     {
       return new ApplicationDbContext();

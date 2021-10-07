@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202110070604482_AddTeamsTableToDb.Designer.cs">
       <DependentUpon>202110070604482_AddTeamsTableToDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110070637480_AddUsersTeamsTableToDb.cs" />
+    <Compile Include="Migrations\202110070637480_AddUsersTeamsTableToDb.Designer.cs">
+      <DependentUpon>202110070637480_AddUsersTeamsTableToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -312,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110070604482_AddTeamsTableToDb.resx">
       <DependentUpon>202110070604482_AddTeamsTableToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110070637480_AddUsersTeamsTableToDb.resx">
+      <DependentUpon>202110070637480_AddUsersTeamsTableToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
