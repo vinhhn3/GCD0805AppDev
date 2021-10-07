@@ -1,11 +1,13 @@
 ﻿using GCD0805AppDev.Models;
 using GCD0805AppDev.Utils;
 using GCD0805AppDev.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace GCD0805AppDev.Controllers
 {
+
   [Authorize(Roles = Role.Manager)]
   public class TeamsController : Controller
   {
@@ -17,8 +19,16 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult Index()
     {
-      var teams = _context.Teams.ToList();
-      return View(teams);
+      List<TeamUsersViewModel> viewModel = _context.UsersTeams
+        .GroupBy(i => i.Team)
+        .Select(res => new TeamUsersViewModel
+        {
+          Team = res.Key,
+          Users = res.Select(u => u.User).ToList()
+        })
+        .ToList();
+
+      return View(viewModel);
     }
 
     [HttpGet]

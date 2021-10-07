@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GCD0805AppDev.Models.Team>
+﻿@model IEnumerable<GCD0805AppDev.ViewModels.TeamUsersViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -12,17 +12,28 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Team Name</th>
-
+      <th scope="col">Team Members</th>
+      <th scope="col">Add Team Member</th>
     </tr>
   </thead>
   <tbody>
-    @foreach (var team in @Model)
+    @foreach (var item in @Model)
     {
       <tr>
-        <th scope="row">@team.Id</th>
-        <td>@team.Name</td>
+        <td>@item.Team.Name</td>
+        <td>
+          <ul>
+            @foreach (var user in item.Users)
+            {
+              <li>@user.Email</li>
+            }
+          </ul>
+
+        </td>
+        <td>
+          @Html.ActionLink("Add User to Team", "AddUser","Teams", new { @class = "btn btn-primary" })
+        </td>
       </tr>
     }
 
