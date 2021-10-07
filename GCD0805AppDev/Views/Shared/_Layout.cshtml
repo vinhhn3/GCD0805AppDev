@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using GCD0805AppDev.Utils
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -24,13 +25,18 @@
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
-                  if (User.IsInRole(GCD0805AppDev.Utils.Role.User))
+                  if (User.IsInRole(Role.User))
                   {
                     <li>@Html.ActionLink("My Todoes", "Index", "Todos")</li>
                   }
-                  else if (User.IsInRole(GCD0805AppDev.Utils.Role.Manager))
+                  else if (User.IsInRole(Role.Manager))
                   {
                     <li>@Html.ActionLink("Manage Teams", "Index", "Teams")</li>
+                  }
+                  else if (User.IsInRole(Role.Admin))
+                  {
+                    <li>@Html.ActionLink("Create Manager", "CreateManager", "Admin")</li>
+
                   }
                 }
               </ul>
