@@ -1,0 +1,20 @@
+﻿@model GCD0805AppDev.Models.Team
+@{
+  ViewBag.Title = "Create";
+}
+
+<h2>Create a new Team</h2>
+
+@using (Html.BeginForm("Create", "Teams", FormMethod.Post))
+{
+  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+  <div class="form-group">
+    <label>Team Name</label>
+    @Html.TextBoxFor(m => m.Name, "", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Name, "",
+      new { @class = "text-danger" }
+      )
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Create a new Team</button>
+}

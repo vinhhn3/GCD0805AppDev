@@ -273,11 +273,12 @@
     <Content Include="Views\Todos\Create.cshtml" />
     <Content Include="Views\Todos\Details.cshtml" />
     <Content Include="Views\Todos\Edit.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Teams\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Categories\" />
-    <Folder Include="Views\Teams\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<GCD0805AppDev.Models.Team>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Teams</h2>
+
+<div class="form-group">
+  @Html.ActionLink("Create a new Team", "Create", "Teams", new { @class = "btn btn-primary" })
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Team Name</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var team in @Model)
+    {
+      <tr>
+        <th scope="row">@team.Id</th>
+        <td>@team.Name</td>
+      </tr>
+    }
+
+  </tbody>
+</table>
+
