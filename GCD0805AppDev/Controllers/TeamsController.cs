@@ -49,11 +49,13 @@ namespace GCD0805AppDev.Controllers
     [HttpGet]
     public ActionResult AddUser()
     {
+      var role = _context.Roles.SingleOrDefault(m => m.Name == Role.User);
       var viewModel = new UsersTeamsViewModel
       {
         Teams = _context.Teams.ToList(),
-        Users = _context.Users.ToList()
+        Users = _context.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id)).ToList()
       };
+
       return View(viewModel);
     }
 
