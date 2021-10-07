@@ -32,7 +32,8 @@
 
         </td>
         <td>
-          @Html.ActionLink("Add User to Team", "AddUser","Teams", new { @class = "btn btn-primary" })
+          @Html.ActionLink("Add User to Team", "AddUser", "Teams", new { @class = "btn btn-primary" })
+          @Html.ActionLink("Remove User", "RemoveUser", "Teams", new { @class = "btn btn-danger" })
         </td>
       </tr>
     }

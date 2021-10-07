@@ -82,7 +82,26 @@ namespace GCD0805AppDev.Controllers
       _context.SaveChanges();
 
       return RedirectToAction("Index", "Teams");
+    }
 
+    [HttpGet]
+    public ActionResult RemoveUser()
+    {
+      var users = _context.UsersTeams
+        .Select(t => t.User)
+        .Distinct()
+        .ToList();
+      var teams = _context.UsersTeams
+        .Select(t => t.Team)
+        .Distinct()
+        .ToList();
+
+      var viewModel = new UsersTeamsViewModel
+      {
+        Teams = teams,
+        Users = users
+      };
+      return View(viewModel);
     }
 
   }
