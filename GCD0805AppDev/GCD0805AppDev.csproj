@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202110040253115_AddUserIdFKToTodosTable.Designer.cs">
       <DependentUpon>202110040253115_AddUserIdFKToTodosTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110070604482_AddTeamsTableToDb.cs" />
+    <Compile Include="Migrations\202110070604482_AddTeamsTableToDb.Designer.cs">
+      <DependentUpon>202110070604482_AddTeamsTableToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -303,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110040253115_AddUserIdFKToTodosTable.resx">
       <DependentUpon>202110040253115_AddUserIdFKToTodosTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110070604482_AddTeamsTableToDb.resx">
+      <DependentUpon>202110070604482_AddTeamsTableToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
