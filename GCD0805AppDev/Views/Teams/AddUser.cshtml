@@ -1,0 +1,27 @@
+﻿@model GCD0805AppDev.ViewModels.UsersTeamsViewModel
+@{
+  ViewBag.Title = "Add User to Team";
+}
+
+<h2>Add User To Team</h2>
+
+@using (Html.BeginForm("AddUser", "Teams", FormMethod.Post))
+{
+  @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+  <label>Team</label>
+  @Html.DropDownListFor(m => m.TeamId,
+    new SelectList(Model.Teams, "Id", "Name"),
+    new { @class = "form-control" }
+  )
+</div>
+  <div class="form-group">
+    <label>User</label>
+    @Html.DropDownListFor(m => m.UserId,
+      new SelectList(Model.Users, "Id", "Email"),
+      new { @class = "form-control" }
+    )
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+}
+
