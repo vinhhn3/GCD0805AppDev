@@ -32,6 +32,16 @@ namespace GCD0805AppDev.Controllers
     }
 
     [HttpGet]
+    public ActionResult TeamMembers(int id)
+    {
+      var teamMembers = _context.UsersTeams
+        .Where(t => t.TeamId == id)
+        .Select(t => t.User)
+        .ToList();
+      return View(teamMembers);
+    }
+
+    [HttpGet]
     public ActionResult Create()
     {
       return View();

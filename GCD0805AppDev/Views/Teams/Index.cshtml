@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<GCD0805AppDev.ViewModels.TeamUsersViewModel>
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
 <h2>All Teams</h2>
@@ -21,7 +21,10 @@
     @foreach (var item in @Model)
     {
       <tr>
-        <td>@item.Team.Name</td>
+        <td>
+          @Html.ActionLink(item.Team.Name, "TeamMembers",  new { id = item.Team.Id })
+
+        </td>
         <td>
           <ul>
             @foreach (var user in item.Users)
