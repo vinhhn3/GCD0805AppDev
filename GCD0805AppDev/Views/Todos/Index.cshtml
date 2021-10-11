@@ -6,7 +6,9 @@
 <h2>My Todoes</h2>
 
 <div class="form-group">
-  @Html.ActionLink("Create a new Todo", "Create","Todos", new { @class = "btn btn-primary" })
+  @Html.ActionLink("Create a new Todo", "Create", "Todos", new { @class = "btn btn-primary" })
+  @Html.ActionLink("See Stats", "Stats", "Todos", null,new { @class = "btn btn-info" })
+  @Html.ActionLink("My Teams", "Belong", "Todos", null, new { @class = "btn btn-default" })
 </div>
 
 <form>

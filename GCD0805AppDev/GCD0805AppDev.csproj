@@ -290,6 +290,7 @@
     <Content Include="Views\Admin\AccountInfo.cshtml" />
     <Content Include="Views\Teams\TeamMembers.cshtml" />
     <Content Include="Views\Todos\Stats.cshtml" />
+    <Content Include="Views\Todos\Belong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

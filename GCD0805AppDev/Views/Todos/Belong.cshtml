@@ -1,0 +1,14 @@
+﻿@model IEnumerable<GCD0805AppDev.Models.Team>
+@{
+    ViewBag.Title = "Belong";
+}
+
+<h2>This User Belongs to</h2>
+
+<ul>
+  @foreach (var item in Model)
+      {
+        <li>@item.Name</li>
+      }
+</ul>
+
