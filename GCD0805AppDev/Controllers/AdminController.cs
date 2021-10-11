@@ -2,6 +2,7 @@
 using GCD0805AppDev.Utils;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,7 @@ namespace GCD0805AppDev.Controllers
     private ApplicationUserManager _userManager;
     public AdminController()
     {
+      _context = new ApplicationDbContext();
     }
     public AdminController(ApplicationUserManager userManager)
     {
@@ -71,6 +73,24 @@ namespace GCD0805AppDev.Controllers
 
       // If we got this far, something failed, redisplay form
       return View(viewModel);
+    }
+
+    [HttpGet]
+    public ActionResult GetManagers()
+    {
+      var role = _context.Roles.SingleOrDefault(m => m.Name == Role.Manager);
+      var managers = _context.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id)).ToList();
+      ViewBag.Title = "Get Managers";
+      return View("AccountInfo", managers);
+    }
+
+    [HttpGet]
+    public ActionResult GetUsers()
+    {
+      var role = _context.Roles.SingleOrDefault(m => m.Name == Role.User);
+      var users = _context.Users.Where(m => m.Roles.Any(r => r.RoleId == role.Id)).ToList();
+      ViewBag.Title = "Get Users";
+      return View("AccountInfo", users);
     }
 
     private void AddErrors(IdentityResult result)
