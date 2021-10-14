@@ -188,5 +188,10 @@ namespace GCD0805AppDev.Controllers
 
       return View(teams);
     }
+
+    public ActionResult Dev01()
+    {
+      return View();
+    }
   }
 }
