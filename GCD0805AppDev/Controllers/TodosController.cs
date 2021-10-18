@@ -14,15 +14,13 @@ namespace GCD0805AppDev.Controllers
   {
     private ApplicationDbContext _context;
     private ITodoRepository _repos;
-    public TodosController()
-    {
-      _context = new ApplicationDbContext();
-    }
-
     public TodosController(ITodoRepository repos)
     {
+      _context = new ApplicationDbContext();
       _repos = repos;
+
     }
+
     [HttpGet]
     public ActionResult Index(string searchString)
     {
@@ -59,16 +57,7 @@ namespace GCD0805AppDev.Controllers
 
       var userId = User.Identity.GetUserId();
 
-      var newTodo = new Todo()
-      {
-        Description = model.Todo.Description,
-        DueDate = model.Todo.DueDate,
-        CategoryId = model.Todo.CategoryId,
-        UserId = userId
-      };
-
-      _context.Todos.Add(newTodo);
-      _context.SaveChanges();
+      _repos.Create(model, userId);
 
       return RedirectToAction("Index", "Todos");
     }
