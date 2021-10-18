@@ -11,5 +11,8 @@ namespace GCD0805AppDev.Repositories.IRepository
     bool Remove(int id, string userId);
     Todo GetById(int id, string userId);
     void Update(TodoCategoriesViewModel model, string userId);
+
+    IEnumerable<Stats> GetStats(string userId);
+    IEnumerable<Team> GetTeamsBelongTo(string userId);
   }
 }

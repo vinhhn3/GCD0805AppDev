@@ -78,5 +78,25 @@ namespace GCD0805AppDev.Repositories
       _context.SaveChanges();
     }
 
+    public IEnumerable<Stats> GetStats(string userId)
+    {
+      var stats = _context.Todos
+        .Where(t => t.UserId == userId)
+        .GroupBy(
+          t => t.Category, (key, values) => new Stats { Category = key, Count = values.Count() }
+        )
+        .ToList();
+
+      return stats;
+    }
+
+    public IEnumerable<Team> GetTeamsBelongTo(string userId)
+    {
+      return _context.UsersTeams
+        .Where(t => t.UserId == userId)
+        .Select(t => t.Team)
+        .ToList();
+    }
+
   }
 }

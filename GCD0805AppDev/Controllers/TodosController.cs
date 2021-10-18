@@ -140,12 +140,7 @@ namespace GCD0805AppDev.Controllers
     {
       var userId = User.Identity.GetUserId();
 
-      var stats = _context.Todos
-        .Where(t => t.UserId == userId)
-        .GroupBy(
-          t => t.Category, (key, values) => new Stats { Category = key, Count = values.Count() }
-        )
-        .ToList();
+      var stats = _repos.GetStats(userId);
 
       return View(stats);
     }
@@ -154,10 +149,7 @@ namespace GCD0805AppDev.Controllers
     public ActionResult Belong()
     {
       var userId = User.Identity.GetUserId();
-      var teams = _context.UsersTeams
-        .Where(t => t.UserId == userId)
-        .Select(t => t.Team)
-        .ToList();
+      var teams = _repos.GetTeamsBelongTo(userId);
 
       return View(teams);
     }
