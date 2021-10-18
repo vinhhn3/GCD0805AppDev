@@ -43,5 +43,20 @@ namespace GCD0805AppDev.Repositories
 
       return todos;
     }
+
+    public bool Remove(int id, string userId)
+    {
+      var todoInDb = _context.Todos
+        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
+      if (todoInDb == null)
+      {
+        return false;
+      }
+
+      _context.Todos.Remove(todoInDb);
+      _context.SaveChanges();
+
+      return true;
+    }
   }
 }

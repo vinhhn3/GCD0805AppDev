@@ -67,15 +67,10 @@ namespace GCD0805AppDev.Controllers
     {
       var userId = User.Identity.GetUserId();
 
-      var todoInDb = _context.Todos
-        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
-      if (todoInDb == null)
+      if (!_repos.Remove(id, userId))
       {
         return HttpNotFound();
       }
-
-      _context.Todos.Remove(todoInDb);
-      _context.SaveChanges();
 
       return RedirectToAction("Index", "Todos");
     }
