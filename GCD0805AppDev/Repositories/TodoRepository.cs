@@ -30,9 +30,11 @@ namespace GCD0805AppDev.Repositories
       _context.SaveChanges();
     }
 
-    public IEnumerable<Todo> GetTodoes(string searchString)
+    public IEnumerable<Todo> GetTodoes(string searchString, string userId)
     {
-      var todos = _context.Todos.Include(t => t.Category).ToList();
+      var todos = _context.Todos.Include(t => t.Category)
+        .Where(t => t.UserId == userId)
+        .ToList();
       if (!string.IsNullOrEmpty(searchString))
       {
         todos = todos

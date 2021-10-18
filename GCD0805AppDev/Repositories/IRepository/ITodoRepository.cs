@@ -6,7 +6,7 @@ namespace GCD0805AppDev.Repositories.IRepository
 {
   public interface ITodoRepository
   {
-    IEnumerable<Todo> GetTodoes(string searchString);
+    IEnumerable<Todo> GetTodoes(string searchString, string userId);
     void Create(TodoCategoriesViewModel model, string userId);
 
     bool Remove(int id, string userId);

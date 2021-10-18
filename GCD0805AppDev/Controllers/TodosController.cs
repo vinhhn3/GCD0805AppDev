@@ -26,8 +26,7 @@ namespace GCD0805AppDev.Controllers
     {
 
       var userId = User.Identity.GetUserId();
-      var todos = _repos.GetTodoes(searchString);
-      todos = todos.Where(u => u.UserId == userId).ToList();
+      var todos = _repos.GetTodoes(searchString, userId);
 
       return View(todos);
     }
