@@ -1,4 +1,5 @@
 ﻿using GCD0805AppDev.Models;
+using GCD0805AppDev.Repositories.IRepository;
 using GCD0805AppDev.Utils;
 using GCD0805AppDev.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -12,26 +13,23 @@ namespace GCD0805AppDev.Controllers
   public class TodosController : Controller
   {
     private ApplicationDbContext _context;
+    private ITodoRepository _repos;
     public TodosController()
     {
       _context = new ApplicationDbContext();
     }
+
+    public TodosController(ITodoRepository repos)
+    {
+      _repos = repos;
+    }
     [HttpGet]
     public ActionResult Index(string searchString)
     {
-      var userId = User.Identity.GetUserId();
-      var todos = _context.Todos
-        .Include(t => t.Category)
-        .Where(t => t.UserId == userId)
-        .ToList();
 
-      if (!string.IsNullOrEmpty(searchString))
-      {
-        todos = todos
-          .Where(t => t.Description.ToLower().Contains(searchString.ToLower())
-              || t.Category.Description.ToLower().Contains(searchString.ToLower())
-          ).ToList();
-      }
+      var userId = User.Identity.GetUserId();
+      var todos = _repos.GetTodoes(searchString);
+      todos = todos.Where(u => u.UserId == userId).ToList();
 
       return View(todos);
     }
@@ -187,11 +185,6 @@ namespace GCD0805AppDev.Controllers
         .ToList();
 
       return View(teams);
-    }
-
-    public ActionResult Dev01()
-    {
-      return View();
     }
   }
 }

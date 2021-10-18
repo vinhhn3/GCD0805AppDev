@@ -6,7 +6,7 @@ namespace GCD0805AppDev.Models
   public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
   {
     public ApplicationDbContext()
-        : base("gcd0808", throwIfV1Schema: false)
+        : base("DefaultConnection", throwIfV1Schema: false)
     {
     }
 
