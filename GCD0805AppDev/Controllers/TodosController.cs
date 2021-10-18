@@ -1,9 +1,7 @@
-﻿using GCD0805AppDev.Models;
-using GCD0805AppDev.Repositories.IRepository;
+﻿using GCD0805AppDev.Repositories.IRepository;
 using GCD0805AppDev.Utils;
 using GCD0805AppDev.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace GCD0805AppDev.Controllers
@@ -11,28 +9,26 @@ namespace GCD0805AppDev.Controllers
   [Authorize(Roles = Role.User)]
   public class TodosController : Controller
   {
-    private ApplicationDbContext _context;
     private ITodoRepository _repos;
-    public TodosController(ITodoRepository repos)
+    private ICategoryRepository _categoryRepos;
+    public TodosController(ITodoRepository repos, ICategoryRepository categoryRepos)
     {
-      _context = new ApplicationDbContext();
       _repos = repos;
+      _categoryRepos = categoryRepos;
 
     }
 
     [HttpGet]
     public ActionResult Index(string searchString)
     {
-
       var userId = User.Identity.GetUserId();
       var todos = _repos.GetTodoes(searchString, userId);
-
       return View(todos);
     }
     [HttpGet]
     public ActionResult Create()
     {
-      var categories = _context.Categories.ToList();
+      var categories = _categoryRepos.GetAll();
       var viewModel = new TodoCategoriesViewModel()
       {
         Categories = categories
@@ -48,7 +44,7 @@ namespace GCD0805AppDev.Controllers
         var viewModel = new TodoCategoriesViewModel
         {
           Todo = model.Todo,
-          Categories = _context.Categories.ToList()
+          Categories = _categoryRepos.GetAll()
         };
         return View(viewModel);
       }
@@ -103,7 +99,7 @@ namespace GCD0805AppDev.Controllers
       var viewModel = new TodoCategoriesViewModel
       {
         Todo = todoInDb,
-        Categories = _context.Categories.ToList()
+        Categories = _categoryRepos.GetAll()
       };
 
       return View(viewModel);
@@ -117,7 +113,7 @@ namespace GCD0805AppDev.Controllers
         var viewModel = new TodoCategoriesViewModel
         {
           Todo = model.Todo,
-          Categories = _context.Categories.ToList()
+          Categories = _categoryRepos.GetAll()
         };
         return View(viewModel);
 

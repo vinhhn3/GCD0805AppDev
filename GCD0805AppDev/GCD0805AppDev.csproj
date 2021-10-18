@@ -233,6 +233,8 @@
     <Compile Include="Models\Todo.cs" />
     <Compile Include="Models\UserTeam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\IRepository\ICategoryRepository.cs" />
     <Compile Include="Repositories\IRepository\ITodoRepository.cs" />
     <Compile Include="Repositories\TodoRepository.cs" />
     <Compile Include="Startup.cs" />

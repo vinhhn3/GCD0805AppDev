@@ -62,6 +62,7 @@ namespace GCD0805AppDev.App_Start
     private static void RegisterServices(IKernel kernel)
     {
       kernel.Bind<ITodoRepository>().To<TodoRepository>();
+      kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
     }
   }
 }
