@@ -3,7 +3,6 @@ using GCD0805AppDev.Repositories.IRepository;
 using GCD0805AppDev.Utils;
 using GCD0805AppDev.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -79,9 +78,7 @@ namespace GCD0805AppDev.Controllers
     {
       var userId = User.Identity.GetUserId();
 
-      var todoInDb = _context.Todos
-        .Include(t => t.Category)
-        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
+      var todoInDb = _repos.GetById(id, userId);
 
       if (todoInDb == null)
       {
@@ -97,8 +94,7 @@ namespace GCD0805AppDev.Controllers
       var userId = User.Identity.GetUserId();
 
 
-      var todoInDb = _context.Todos
-        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
+      var todoInDb = _repos.GetById(id, userId);
       if (todoInDb == null)
       {
         return HttpNotFound();
@@ -128,17 +124,13 @@ namespace GCD0805AppDev.Controllers
       }
       var userId = User.Identity.GetUserId();
 
-      var todoInDb = _context.Todos
-        .SingleOrDefault(t => t.Id == model.Todo.Id && t.UserId == userId);
+      var todoInDb = _repos.GetById(model.Todo.Id, userId);
       if (todoInDb == null)
       {
         return HttpNotFound();
       }
 
-      todoInDb.Description = model.Todo.Description;
-      todoInDb.DueDate = model.Todo.DueDate;
-      todoInDb.CategoryId = model.Todo.CategoryId;
-      _context.SaveChanges();
+      _repos.Update(model, userId);
 
       return RedirectToAction("Index", "Todos");
     }

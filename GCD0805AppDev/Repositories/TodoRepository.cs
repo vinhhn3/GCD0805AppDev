@@ -60,5 +60,23 @@ namespace GCD0805AppDev.Repositories
 
       return true;
     }
+
+    public Todo GetById(int id, string userId)
+    {
+      return _context.Todos
+        .Include(t => t.Category)
+        .SingleOrDefault(t => t.Id == id && t.UserId == userId);
+    }
+
+    public void Update(TodoCategoriesViewModel model, string userId)
+    {
+      var todoInDb = GetById(model.Todo.Id, userId);
+
+      todoInDb.Description = model.Todo.Description;
+      todoInDb.DueDate = model.Todo.DueDate;
+      todoInDb.CategoryId = model.Todo.CategoryId;
+      _context.SaveChanges();
+    }
+
   }
 }

@@ -8,7 +8,8 @@ namespace GCD0805AppDev.Repositories.IRepository
   {
     IEnumerable<Todo> GetTodoes(string searchString, string userId);
     void Create(TodoCategoriesViewModel model, string userId);
-
     bool Remove(int id, string userId);
+    Todo GetById(int id, string userId);
+    void Update(TodoCategoriesViewModel model, string userId);
   }
 }
