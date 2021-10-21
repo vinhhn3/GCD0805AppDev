@@ -98,5 +98,10 @@ namespace GCD0805AppDev.Repositories
         .ToList();
     }
 
+    public IEnumerable<Todo> GetTodoes()
+    {
+      return _context.Todos.ToList();
+    }
+
   }
 }

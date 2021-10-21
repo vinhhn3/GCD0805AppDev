@@ -37,6 +37,8 @@ namespace GCD0805AppDev.Controllers
     }
 
     [HttpPost]
+    [Authorize(Roles = Role.Admin)]
+    [Authorize(Roles = Role.User)]
     public ActionResult Create(TodoCategoriesViewModel model)
     {
       if (!ModelState.IsValid)
